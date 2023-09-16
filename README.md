@@ -17,6 +17,15 @@ npm run dev
 
 The API will be running on `http://localhost:5173`.
 
+## Login Credentials
+Dev Login
+username - dev
+password - dev@1234
+
+User Login
+username - demo user
+password - 1234
+
 ## Base URL
 
 The base URL for all API endpoints is: `https://localhost:300 or https://asset.jee6.in/` based on the connectLocalAPI in config.js file.

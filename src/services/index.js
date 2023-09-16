@@ -27,7 +27,6 @@ export const loginUser = (payload, cb) => async (dispatch) => {
         const { data } = await http.post(`/user/login`, payload);
 
         if (data.token) {
-            cb(true);
 
             const userInfo = {
                 username: payload.username,
@@ -43,6 +42,7 @@ export const loginUser = (payload, cb) => async (dispatch) => {
 
             http.setAuthToken(data.token);
             console.log('Login successful');
+            cb(true);
         } else {
             cb(false);
             console.log('Login failed');
