@@ -1,9 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { getAssets, purchaseAssets, sellAsset } from '../../services';
 import { toast } from 'react-toastify';
+import { logout } from '../../store/reducers/userReducer';
 
 const UserDashboard = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const assets = useSelector((state) => state.assets.list);
@@ -160,6 +163,18 @@ const UserDashboard = () => {
                         className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition duration-300"
                     >
                         Sell Asset
+                    </button>
+
+                    <hr className="my-6 border-gray-300" />
+
+                    <button
+                        onClick={() => {
+                            dispatch(logout());
+                            navigate('/');
+                        }}
+                        className="w-full mt-2 border text-red-500 border-red-500 hover:text-white py-2 rounded hover:bg-red-600 transition duration-300"
+                    >
+                        Logout
                     </button>
                 </div>
             </div>

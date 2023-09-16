@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { addAssets } from '../../services';
+import { logout } from '../../store/reducers/userReducer';
 
 const initialState = {
     name: '',
@@ -9,6 +11,7 @@ const initialState = {
 };
 
 const AssetCreation = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [asset, setAsset] = useState(initialState);
     const [inputErrors, setInputErrors] = useState({
@@ -56,9 +59,8 @@ const AssetCreation = () => {
                         name="name"
                         value={asset.name}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${
-                            inputErrors.name ? 'border-red-500' : 'focus:border-blue-400'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${inputErrors.name ? 'border-red-500' : 'focus:border-blue-400'
+                            }`}
                     />
                 </div>
                 <div className={`mb-4 ${inputErrors.quantity ? 'border-red-500' : ''}`}>
@@ -71,9 +73,8 @@ const AssetCreation = () => {
                         name="quantity"
                         value={asset.quantity}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${
-                            inputErrors.quantity ? 'border-red-500' : 'focus:border-blue-400'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${inputErrors.quantity ? 'border-red-500' : 'focus:border-blue-400'
+                            }`}
                     />
                 </div>
                 <div className={`mb-4 ${inputErrors.cost ? 'border-red-500' : ''}`}>
@@ -86,9 +87,8 @@ const AssetCreation = () => {
                         name="cost"
                         value={asset.cost}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${
-                            inputErrors.cost ? 'border-red-500' : 'focus:border-blue-400'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded shadow focus:outline-none ${inputErrors.cost ? 'border-red-500' : 'focus:border-blue-400'
+                            }`}
                     />
                 </div>
                 <button
@@ -96,6 +96,18 @@ const AssetCreation = () => {
                     className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
                 >
                     Create Asset
+                </button>
+
+                <hr className="my-6 border-gray-300" />
+
+                <button
+                    onClick={() => {
+                        dispatch(logout());
+                        navigate('/');
+                    }}
+                    className="w-full mt-2 border text-red-500 border-red-500 hover:text-white py-2 rounded hover:bg-red-600 transition duration-300"
+                >
+                    Logout
                 </button>
             </div>
         </div>

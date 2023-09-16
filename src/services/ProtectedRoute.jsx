@@ -8,13 +8,13 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
     useEffect(() => {
-        if (!isAuthenticated) return navigate('/');
+        if (!isAuthenticated) navigate('/');
         return () => {
             navigate('/');
         };
     }, [isAuthenticated, navigate]);
 
-    return isAuthenticated ? <Component {...rest} /> : null;
+    return isAuthenticated ? <Component {...rest} /> : <></>;
 };
 
 export default ProtectedRoute;
